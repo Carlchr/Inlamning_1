@@ -3,14 +3,14 @@ import mysql.connector
 from mysql.connector import Error
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # TODO: Ändra detta till en slumpmässig hemlig nyckel
+app.secret_key = '123321'  # TODO: Ändra detta till en slumpmässig hemlig nyckel
 
 # Databaskonfiguration
 DB_CONFIG = {
     'host': 'localhost',
-    'user': 'root',  # Ändra detta till ditt MySQL-användarnamn
-    'password': '',  # Ändra detta till ditt MySQL-lösenord
-    'database': 'webbserv_demo'  # TODO: Ändra detta till ditt databasnamn
+    'user': 'admin',
+    'password': 'masterkey',
+    'database': 'inlamning_1'  
 }
 
 def get_db_connection():
@@ -29,10 +29,10 @@ def index():
 @app.route('/login', methods=['POST'])
 def login():
     # hantera POST request från inloggningsformuläret
-    if request.method == 'POST':
-        username = '' # TODO: Hämta det username som POSTats med requesten
-        password = '' # TODO: Hämta det password som POSTats med requesten
-        
+    if request.method == 'POST':        
+        username = request.form['username']
+        password = request.form['password']
+
         # Anslut till databasen
         connection = get_db_connection()
         if connection is None:
@@ -40,23 +40,28 @@ def login():
         
         try:
             cursor = connection.cursor(dictionary=True)
-            
+
             # Fråga för att kontrollera om användare finns med matchande användarnamn
             query = "SELECT * FROM users WHERE username = %s"
-            
-            # TODO: anropa databasen och hämta resultatet med cursor.fetchone() se https://www.geeksforgeeks.org/dbms/querying-data-from-a-database-using-fetchone-and-fetchall/
-            # lägg resultatet i variabeln user nedan.
-            user = # TODO: ska få värdet som är raden i databasen som returneras av query ovan.
+            cursor.execute(query, (username, password))
+            user = cursor.fetchone()            
             
             # Kontrollera om användaren fanns i databasen och lösenordet är korrekt.
+            if user['password'] == password and user['username'] == username:
+                session['logged_in'] = True
+                session['username'] = user['username']
+                session['password'] = user['password']
+                return f'Inloggning lyckades! Välkommen {user["username"]}!'
+            else:  
+                return ('Ogiltigt användarnamn eller lösenord', 401)
+
             # Om lösenordet är korrekt så sätt sessionsvariabler och skicka tillbaka en hälsning med användarens namn.
-            # Om lösenordet inte är korrekt skicka tillbaka ett felmeddelande med http-status 401.
-            if user ...: # TODO: gör klart villkoret
+
+            if user: # TODO: gör klart villkoret
                 # Inloggning lyckades - spara användarinfo i session
-                ... # TODO: spara i sessionen
+            #    ... # TODO: spara i sessionen
                 return f'Inloggning lyckades! Välkommen {...}!'
             else:
-                # Inloggning misslyckades, skicka http status 401 (Unauthorized)
                 return ('Ogiltigt användarnamn eller lösenord', 401)
 
         except Error as e:
