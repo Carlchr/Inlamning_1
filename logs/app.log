@@ -1,0 +1,15 @@
+2025-10-24 14:14:54,455 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
+2025-10-24 14:16:56,782 WARNING: 404 error: http://127.0.0.1:5000/loginawd [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:123]
+2025-10-24 14:18:21,896 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
+2025-10-24 14:18:40,372 ERROR: Unhandled exception: division by zero [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:139]
+Traceback (most recent call last):
+  File "C:\Users\Elev\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Elev\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py", line 119, in test_500_error
+    a = 1 / 0  # This will raise a ZeroDivisionError
+        ~~^~~
+ZeroDivisionError: division by zero

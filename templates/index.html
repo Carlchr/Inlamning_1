@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia quaerat repudiandae iste molestias alias eos provident perspiciatis voluptatibus! Sint ut facilis blanditiis maiores autem assumenda aperiam beatae deserunt perspiciatis fugiat?</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('logout') }}" method="get">
+        <input type="submit" value="logout">
+    </form>
+</body>
+</html>
