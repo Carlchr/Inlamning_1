@@ -5,10 +5,10 @@ import random as rand
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = str(rand.randint(1, 1000000))
-
 
 # Databaskonfiguration
 DB_CONFIG = {

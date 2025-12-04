@@ -13,3 +13,7 @@ Traceback (most recent call last):
     a = 1 / 0  # This will raise a ZeroDivisionError
         ~~^~~
 ZeroDivisionError: division by zero
+2025-11-28 14:26:26,864 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
+2025-11-28 14:26:27,255 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
+2025-11-28 14:31:41,632 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
+2025-11-28 14:31:41,917 INFO: Flask Error Handling Demo startup [in C:\Users\Elev\Documents\GitHub\Inlamning_1\app.py:53]
